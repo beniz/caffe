@@ -100,7 +100,7 @@ Build MatCaffe with `make all matcaffe`. After that, you may test it using `make
 Common issue: if you run into error messages like `libstdc++.so.6:version 'GLIBCXX_3.4.15' not found` during `make mattest`, then it usually means that your Matlab's runtime libraries do not match your compile-time libraries. You may need to do the following before you start Matlab:
 
     export LD_LIBRARY_PATH=/opt/intel/mkl/lib/intel64:/usr/local/cuda/lib64
-    export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6
+    export LD_PRELOAD=/usr/lib/arm-linux-gnueabihf/libstdc++.so.6
 
 Or the equivalent based on where things are installed on your system, and do `make mattest` again to see if the issue is fixed. Note: this issue is sometimes more complicated since during its startup Matlab may overwrite your `LD_LIBRARY_PATH` environment variable. You can run `!ldd ./matlab/+caffe/private/caffe_.mexa64` (the mex extension may differ on your system) in Matlab to see its runtime libraries, and preload your compile-time libraries by exporting them to your `LD_PRELOAD` environment variable.
 

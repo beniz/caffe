@@ -342,6 +342,10 @@ ifeq ($(ALLOW_LMDB_NOLOCK), 1)
 endif
 endif
 
+ifeq ($(USE_RASPI3),1)
+	COMMON_FLAGS += -mfpu=neon-vfpv4 -funsafe-math-optimizations -ftree-vectorize -fomit-frame-pointer -mcpu=cortex-a53
+endif
+
 # CPU-only configuration
 ifeq ($(CPU_ONLY), 1)
 	OBJS := $(PROTO_OBJS) $(CXX_OBJS)

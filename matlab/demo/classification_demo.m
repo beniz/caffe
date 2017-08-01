@@ -22,7 +22,7 @@ function [scores, maxlabel] = classification_demo(im, use_gpu)
 %
 % You may need to do the following before you start matlab:
 %  $ export LD_LIBRARY_PATH=/opt/intel/mkl/lib/intel64:/usr/local/cuda-5.5/lib64
-%  $ export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6
+%  $ export LD_PRELOAD=/usr/lib/arm-linux-gnueabihf/libstdc++.so.6
 % Or the equivalent based on where things are installed on your system
 %
 % Usage:

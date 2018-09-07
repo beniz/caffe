@@ -190,12 +190,13 @@ ifneq ($(CPU_ONLY), 1)
 	LIBRARIES += cudart cublas cusparse curand
 endif
 
-LIBRARIES += glog gflags protobuf boost_system boost_filesystem boost_regex m hdf5_hl hdf5
+LIBRARIES += glog gflags protobuf boost_system boost_filesystem boost_regex m
 
 # handle IO dependencies
 USE_LEVELDB ?= 1
 USE_LMDB ?= 1
 USE_OPENCV ?= 1
+USE_HDF5 ?= 1
 
 ifeq ($(USE_LEVELDB), 1)
 	LIBRARIES += leveldb snappy
@@ -210,6 +211,9 @@ ifeq ($(USE_OPENCV), 1)
 		LIBRARIES += opencv_imgcodecs opencv_videoio
 	endif
 
+endif
+ifeq ($(USE_HDF5), 1)
+	LIBRARIES += hdf5_hl hdf5
 endif
 PYTHON_LIBRARIES ?= boost_python python2.7
 WARNINGS := -Wall -Wno-sign-compare
@@ -359,7 +363,7 @@ endif
 
 # optimized flags for pi
 ifeq ($(USE_RASPI3),1)
-       COMMON_FLAGS += -mfpu=neon-vfpv4 -funsafe-math-optimizations -ftree-vectorize -fomit-frame-pointer -mcpu=cortex-a53
+       COMMON_FLAGS += -funsafe-math-optimizations -ftree-vectorize -fomit-frame-pointer -fPIC
 endif
 
 # CPU-only configuration

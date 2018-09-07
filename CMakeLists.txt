@@ -39,6 +39,9 @@ caffe_option(USE_LEVELDB "Build with levelDB" ON)
 caffe_option(USE_LMDB "Build with lmdb" ON)
 caffe_option(ALLOW_LMDB_NOLOCK "Allow MDB_NOLOCK when reading LMDB files (only if necessary)" OFF)
 
+# HDF5
+caffe_option(USE_HDF5 "Build with hdf5" ON)
+
 # ---[ Dependencies
 include(cmake/Dependencies.cmake)
 

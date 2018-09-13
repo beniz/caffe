@@ -71,6 +71,17 @@ function(caffe_generate_export_configs)
     list(APPEND Caffe_DEFINITIONS -DUSE_LEVELDB)
   endif()
 
+  set(HDF5_IMPORTED OFF)
+  foreach(_lib ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
+    if(TARGET ${_lib})
+      set(HDF5_IMPORTED ON)
+    endif()
+  endforeach()
+
+  if(USE_HDF5)
+    list(APPEND Caffe_DEFINITIONS -DUSE_HDF5)
+  endif()
+
   if(NOT HAVE_CUDNN)
     set(HAVE_CUDNN FALSE)
   else()

@@ -248,7 +248,10 @@ void DenseImageDataLayer<Dtype>::load_batch(Batch<Dtype>* batch) {
       }
     }
     // Apply random rotation of images
-    if (this->layer_param_.dense_image_data_param().rotate()) {
+    // forbid in case of one host encoding of labels, because cv 2.x does not support transpose
+    // of arbitrary number of channels image
+
+    if (this->layer_param_.dense_image_data_param().rotate() && one_hot_nclasses_ == 0 ) {
       int r = rd_(rg_);
       if (r > 0)
 	{
